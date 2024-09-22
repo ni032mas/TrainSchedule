@@ -8,7 +8,7 @@ internal class StationResponse(
     @SerialName("direction")
     val direction: String,
     @SerialName("codes")
-    val codes: CodesResponse,
+    val codes: StationCodesResponse,
     @SerialName("station_type")
     val stationType: StationTypeResponse,
     @SerialName("title")
