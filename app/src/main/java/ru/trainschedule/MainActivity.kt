@@ -4,14 +4,11 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import ru.trainschedule.ui.theme.TrainScheduleTheme
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import ru.trainschedule.presentation.ui.SelectStationView
+import ru.trainschedule.presentation.ui.selectStationStateStub
+import ru.trainschedule.presentation.ui.theme.TrainScheduleTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,29 +16,10 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             TrainScheduleTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                SelectStationView(
+                    state = remember { mutableStateOf(selectStationStateStub) },
+                )
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    TrainScheduleTheme {
-        Greeting("Android")
     }
 }

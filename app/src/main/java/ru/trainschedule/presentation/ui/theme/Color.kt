@@ -1,4 +1,4 @@
-package ru.trainschedule.ui.theme
+package ru.trainschedule.presentation.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
