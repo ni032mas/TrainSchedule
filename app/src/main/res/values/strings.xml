@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Train schedule</string>
+    <string name="station_list_today_tab">Today</string>
+    <string name="station_list_tomorrow_tab">Tomorrow</string>
+    <string name="station_list_from">From</string>
+    <string name="station_list_to">To</string>
 </resources>
