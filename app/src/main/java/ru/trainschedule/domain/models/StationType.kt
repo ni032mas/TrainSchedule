@@ -1,6 +1,6 @@
 package ru.trainschedule.domain.models
 
-enum class StationType {
+internal enum class StationType {
     STATION,
     PLATFORM,
     STOP,

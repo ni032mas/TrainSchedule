@@ -1,6 +1,6 @@
 package ru.trainschedule.domain.models
 
-internal class Carrier(
+internal data class Carrier(
     val address: String,
     val code: Int,
     val codes: CarrierCodes,

@@ -1,6 +1,6 @@
 package ru.trainschedule.domain.models
 
-class Station(
+internal data class Station(
     val direction: String,
     val codes: StationCodes,
     val stationType: StationType,

@@ -1,6 +1,6 @@
 package ru.trainschedule.domain.models
 
-internal class SegmentStation(
+internal data class SegmentStation(
     val code: String,
     val popularTitle: String,
     val shortTitle: String,

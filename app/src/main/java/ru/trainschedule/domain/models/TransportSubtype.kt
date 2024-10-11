@@ -1,6 +1,6 @@
 package ru.trainschedule.domain.models
 
-internal class TransportSubtype(
+internal data class TransportSubtype(
     val code: String?,
     val color: String?,
     val title: String?,

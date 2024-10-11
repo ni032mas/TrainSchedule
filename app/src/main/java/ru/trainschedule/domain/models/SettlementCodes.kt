@@ -1,5 +1,5 @@
 package ru.trainschedule.domain.models
 
-class SettlementCodes(
+internal data class SettlementCodes(
     val yandexCode: String,
 )
