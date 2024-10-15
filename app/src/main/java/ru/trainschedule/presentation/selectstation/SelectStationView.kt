@@ -1,4 +1,4 @@
-package ru.trainschedule.presentation.ui
+package ru.trainschedule.presentation.selectstation
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -32,12 +32,27 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import ru.trainschedule.R
 import ru.trainschedule.domain.models.Segment
-import ru.trainschedule.presentation.ui.models.SelectStationState
-import ru.trainschedule.presentation.ui.models.SelectedDate
+import ru.trainschedule.presentation.selectstation.model.SelectStationState
+import ru.trainschedule.presentation.selectstation.model.SelectedDate
+import ru.trainschedule.presentation.ui.formatDate
+import ru.trainschedule.presentation.ui.selectStationStateStub
 import ru.trainschedule.presentation.ui.theme.TrainScheduleTheme
 import kotlin.time.Duration.Companion.seconds
+
+@Composable
+internal fun SelectStationScreen(
+    onSegmentClick: (Segment) -> Unit,
+    viewModel: SelectStationViewModel = viewModel(factory = SelectStationViewModel.Factory),
+) {
+    SelectStationView(
+        state = viewModel.state.collectAsStateWithLifecycle(),
+    )
+}
+
 
 @Composable
 internal fun SelectStationView(state: State<SelectStationState>) {

@@ -1,4 +1,4 @@
-package ru.trainschedule.presentation.ui
+package ru.trainschedule.presentation.segment
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -24,11 +24,20 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.State
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.internal.decodeStringToJsonTree
+import ru.trainschedule.domain.models.Segment
+import ru.trainschedule.presentation.segment.model.SegmentAction
+import ru.trainschedule.presentation.segment.model.SegmentState
 import ru.trainschedule.presentation.ui.theme.TrainScheduleTheme
 
 data class Stop(val time: String, val station: String, val additionalInfo: String = "")
@@ -45,43 +54,79 @@ val stops = listOf(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TrainScheduleScreen() {
+internal fun SegmentView(
+    segment: Segment,
+    viewModel: SegmentViewModel = viewModel(),
+    onBackClick: () -> Unit,
+) {
+    val state = viewModel.state.collectAsStateWithLifecycle()
+    LaunchedEffect(Unit) {
+        viewModel.acceptAction(SegmentAction.Start(segment))
+    }
     Scaffold(
         topBar = {
             TopAppBar(
                 title = { Text("Поезд 6107") },
                 navigationIcon = {
-                    IconButton(onClick = {/* TODO: Implement back button action */ }) {
+                    IconButton(onClick = onBackClick) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = null)
                     }
                 },
                 actions = {
-                    IconButton(onClick = { /* TODO: Implement alarm icon action */ }) {
+                    IconButton(
+                        onClick = { viewModel.acceptAction(SegmentAction.AddedAlarm) }
+                    ) {
                         Icon(Icons.Default.Alarm, contentDescription = null)
                     }
                 }
             )
         }
-    ) {
-        Column(
-            modifier = Modifier
-                .padding(it)
-                .padding(16.dp)
-        ) {
-            TrainDetails()
-            Spacer(Modifier.height(16.dp))
-            HorizontalDivider()
-            Text(
-                text = "Указано местное время",
-                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
-            )
-            StopList(stops)
-        }
+    ) { contentPadding ->
+        SegmentBody(
+            modifier = Modifier.padding(contentPadding),
+            state = state,
+        )
     }
 }
 
 @Composable
-fun TrainDetails() {
+internal fun SegmentBody(
+    modifier: Modifier = Modifier,
+    state: State<SegmentState>,
+) {
+    Column(modifier) {
+        TrainDetails(state)
+        Spacer(Modifier.height(16.dp))
+        HorizontalDivider()
+        Text(
+            text = "Указано местное время",
+            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
+        )
+        StopList(stops)
+    }
+}
+
+@Composable
+internal fun TrainDetails(state: State<SegmentState>) {
+    state.value.segment?.let { segment ->
+        Column {
+//            Text(text = segment.title, color = MaterialTheme.colorScheme.primary, fontSize = 18.sp)
+//            Text(text = route, style = MaterialTheme.typography.titleMedium)
+//            Text(text = schedule, style = MaterialTheme.typography.bodyMedium)
+//            Text(text = days, style = MaterialTheme.typography.bodyMedium)
+//            Text(text = stops, style = MaterialTheme.typography.bodyMedium)
+        }
+    }
+//    LazyColumn {
+//        Json.decodeFromString
+//        items(state.value.segment.stops) { stop ->
+//            StopItem(stop)
+//            HorizontalDivider(
+//                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.2f),
+//                thickness = 1.dp
+//            )
+//        }
+//    }
     Column {
         Text(text = "Ласточка", color = MaterialTheme.colorScheme.primary, fontSize = 18.sp)
         Text(text = "Сочи — Роза Хутор", style = MaterialTheme.typography.titleMedium)
@@ -91,7 +136,7 @@ fun TrainDetails() {
 }
 
 @Composable
-fun StopList(stops: List<Stop>) {
+internal fun StopList(stops: List<Stop>) {
     LazyColumn(
         contentPadding = PaddingValues(vertical = 4.dp)
     ) {
@@ -111,7 +156,7 @@ fun StopList(stops: List<Stop>) {
 }
 
 @Composable
-fun StopItem(stop: Stop) {
+internal fun StopItem(stop: Stop) {
     Column(modifier = Modifier.padding(vertical = 8.dp)) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             Icon(
@@ -145,6 +190,6 @@ fun StopItem(stop: Stop) {
 @Composable
 private fun TrainScheduleScreenPreview() {
     TrainScheduleTheme {
-        TrainScheduleScreen()
+//        SegmentView()
     }
 }

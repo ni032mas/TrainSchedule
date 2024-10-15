@@ -1,6 +1,6 @@
 package ru.trainschedule.domain.models
 
-enum class ExpressType {
+internal enum class ExpressType {
     EXPRESS,
     AEROEXPRESS,
 }

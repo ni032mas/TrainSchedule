@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-internal class SearchToResponse(
+internal class SearchFromToResponse(
     @SerialName("code")
     val code: String,
     @SerialName("popular_title")

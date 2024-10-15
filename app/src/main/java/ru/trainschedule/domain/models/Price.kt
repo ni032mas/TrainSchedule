@@ -1,6 +1,9 @@
 package ru.trainschedule.domain.models
 
-internal class Price(
+import kotlinx.serialization.Serializable
+
+@Serializable
+internal data class Price(
     val cents: Int,
     val whole: Int,
 )

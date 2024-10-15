@@ -1,6 +1,6 @@
 package ru.trainschedule.domain.models
 
-enum class TransportType {
+internal enum class TransportType {
     PLANE,
     TRAIN,
     SUBURBAN,

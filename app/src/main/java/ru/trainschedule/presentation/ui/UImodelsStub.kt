@@ -14,8 +14,8 @@ import ru.trainschedule.domain.models.StationType
 import ru.trainschedule.domain.models.TicketsInfo
 import ru.trainschedule.domain.models.TransportSubtype
 import ru.trainschedule.domain.models.TransportType
-import ru.trainschedule.presentation.ui.models.SelectStationState
-import ru.trainschedule.presentation.ui.models.SelectedDate
+import ru.trainschedule.presentation.selectstation.model.SelectStationState
+import ru.trainschedule.presentation.selectstation.model.SelectedDate
 
 internal val selectStationStateStub = SelectStationState(
     isLoading = true,

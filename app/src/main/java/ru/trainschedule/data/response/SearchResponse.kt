@@ -8,7 +8,7 @@ internal class SearchResponse(
     @SerialName("date")
     val date: String,
     @SerialName("from")
-    val from: SearchFromResponse,
+    val from: SearchFromToResponse,
     @SerialName("to")
-    val to: SearchToResponse,
+    val to: SearchFromToResponse,
 )

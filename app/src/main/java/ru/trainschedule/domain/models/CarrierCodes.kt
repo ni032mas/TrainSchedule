@@ -1,6 +1,9 @@
 package ru.trainschedule.domain.models
 
-internal class CarrierCodes(
+import kotlinx.serialization.Serializable
+
+@Serializable
+internal data class CarrierCodes(
     val iata: String?,
     val icao: String?,
     val sirena: String?,

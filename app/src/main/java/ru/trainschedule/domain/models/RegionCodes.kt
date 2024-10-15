@@ -1,5 +1,5 @@
 package ru.trainschedule.domain.models
 
-class RegionCodes(
+internal data class RegionCodes(
     val yandexCode: String,
 )
