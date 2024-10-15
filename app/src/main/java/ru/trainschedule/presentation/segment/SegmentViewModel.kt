@@ -26,7 +26,6 @@ internal class SegmentViewModel : ViewModel() {
     }
 
     private fun addedAlarm() {
-        actor {}
         TODO("Not yet implemented")
     }
 

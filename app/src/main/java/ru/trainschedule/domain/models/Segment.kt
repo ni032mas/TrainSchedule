@@ -1,5 +1,8 @@
 package ru.trainschedule.domain.models
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 internal data class Segment(
     val arrival: String,
     val arrivalPlatform: String,

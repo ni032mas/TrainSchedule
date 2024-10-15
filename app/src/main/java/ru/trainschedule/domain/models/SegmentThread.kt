@@ -1,5 +1,8 @@
 package ru.trainschedule.domain.models
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 internal data class SegmentThread(
     val carrier: Carrier,
     val expressType: ExpressType?,

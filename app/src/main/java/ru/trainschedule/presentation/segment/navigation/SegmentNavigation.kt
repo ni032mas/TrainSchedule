@@ -11,15 +11,13 @@ import ru.trainschedule.presentation.segment.SegmentView
 
 
 @Serializable
-internal class SegmentRoute(
-    val data: Segment,
-)
+internal class SegmentRoute
 
 internal fun NavController.navigateToSegmentRoute(
     segment: Segment,
     navOptions: NavOptions? = null,
 ) {
-    navigate(route = SegmentRoute(segment), navOptions)
+    navigate(route = segment, navOptions)
 }
 
 internal fun NavGraphBuilder.segmentScreen(

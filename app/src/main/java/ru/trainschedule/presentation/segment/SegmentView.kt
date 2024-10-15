@@ -110,23 +110,23 @@ internal fun SegmentBody(
 internal fun TrainDetails(state: State<SegmentState>) {
     state.value.segment?.let { segment ->
         Column {
-            Text(text = segment.title, color = MaterialTheme.colorScheme.primary, fontSize = 18.sp)
-            Text(text = route, style = MaterialTheme.typography.titleMedium)
-            Text(text = schedule, style = MaterialTheme.typography.bodyMedium)
-            Text(text = days, style = MaterialTheme.typography.bodyMedium)
-            Text(text = stops, style = MaterialTheme.typography.bodyMedium)
+//            Text(text = segment.title, color = MaterialTheme.colorScheme.primary, fontSize = 18.sp)
+//            Text(text = route, style = MaterialTheme.typography.titleMedium)
+//            Text(text = schedule, style = MaterialTheme.typography.bodyMedium)
+//            Text(text = days, style = MaterialTheme.typography.bodyMedium)
+//            Text(text = stops, style = MaterialTheme.typography.bodyMedium)
         }
     }
-    LazyColumn {
-        Json.decodeFromString
-        items(state.value.segment.stops) { stop ->
-            StopItem(stop)
-            HorizontalDivider(
-                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.2f),
-                thickness = 1.dp
-            )
-        }
-    }
+//    LazyColumn {
+//        Json.decodeFromString
+//        items(state.value.segment.stops) { stop ->
+//            StopItem(stop)
+//            HorizontalDivider(
+//                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.2f),
+//                thickness = 1.dp
+//            )
+//        }
+//    }
     Column {
         Text(text = "Ласточка", color = MaterialTheme.colorScheme.primary, fontSize = 18.sp)
         Text(text = "Сочи — Роза Хутор", style = MaterialTheme.typography.titleMedium)
